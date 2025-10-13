@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'blog/index.css' %}">
+{% endblock css_files %}
+
+{% block title %}
+    My Blog
+{% endblock title %}
+
+{% block content %}
+    <header id="main-navigation">
+        <h1><a href="">Holmes' Blog</a></h1>
+        <nav>
+            <a href="">All Posts</a>
+        </nav>
+    </header>
+    <section id="welcome">
+        <header>
+            <img src="{% static 'blog/images/holmes.jpg' %}" alt="Holmes - The Author Of This Blog">
+            <h2>Holmes' Blog</h2>
+        </header>
+        <p>Hello, I am Holmes and I like to think</p>
+    </section>
+
+    <section id="latest-posts">
+        <h2>My Latest Thoughts</h2>
+        <ul>
+            <li>
+                <article class="post">
+                    <a href="">
+                        <img src="{% static 'blog/images/mountains.jpg' %}" alt="Mountains">
+                        <div class="post__content">
+                            <h3>Mountains</h3>
+                            <p>There's nothing like Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae tenetur quidem, earum sed perferendis doloremque deserunt delectus cum minus asperiores nostrum est laborum accusantium nihil eaque rerum expedita totam aperiam!</p>
+                        </div>
+                    </a>
+                </article>
+            </li>
+        </ul>
+    </section>
+
+    <section id="about">
+        <h2>What I Do</h2>
+        <p>I like Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, minus cum amet necessitatibus sequi ab voluptates sit, nemo totam et molestiae. Nihil suscipit necessitatibus sunt quibusdam obcaecati nisi quisquam distinctio!</p>
+        <p>My goal is to keep Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium cupiditate error reiciendis necessitatibus, laboriosam architecto reprehenderit, porro nulla dolor iure odit quia excepturi enim perferendis aliquam quis nam similique quod.</p>
+    </section>
+{% endblock content %}
