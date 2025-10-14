@@ -10,7 +10,6 @@ COPY pyproject.toml poetry.lock ./
 RUN pip install --no-cache-dir poetry && \
     poetry config virtualenvs.create false && \
     poetry install --no-interaction --no-ansi && \
-    rm -rf /root/.cache/pip
 
 # Copy the application code to the container
 COPY . .
@@ -20,5 +19,5 @@ EXPOSE 8000
 ENV PYTHONUNBUFFERED=1
 ENV DJANGO_SETTINGS_MODULE=my_site.settings
 
-# Set default command
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Set the default command to run the application
+CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
