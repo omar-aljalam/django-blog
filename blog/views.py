@@ -88,7 +88,7 @@ def post_detail(request, slug):
     try:
         my_post = next(post for post in all_posts if post["slug"] == slug)
     except StopIteration:
-        raise Http404("Post not found")
+        raise Http404()
     return render(request, "blog/post-detail.html", {
         "post": my_post
     })

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock title %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'books/book_detail.css' %}">
+{% endblock css_files %}
+
+{% block content %}
+<section id="book-detail">
+    <div class="book-card">
+        <h2>{{ title }}</h2>
+        <p>by {{ author }}</p>
+        <p>The Book has a rating of {{rating }}
+            {% if is_bestseller %}
+                and is a bestseller!
+            {% else %}
+                but is not a bestseller.
+            {% endif %}
+        </p>
+        <a href="{% url 'books-index-page' %}" class="back-link">← Back to all books</a>
+    </div>
+</section>
+{% endblock content %}

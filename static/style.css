@@ -10,6 +10,7 @@ html {
 
 body {
   margin: 0;
+  background-color: #e7e7e7;
 }
 
 h1,
@@ -29,12 +30,18 @@ h3 {
   position: absolute;
   top: 0;
   left: 0;
+  background-color: #390281;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
-
+#main-navigation nav {
+  display: flex;
+  gap: 2rem;
+}
 #main-navigation a {
   text-decoration: none;
   color: white;
   font-weight: bold;
+  margin-left: 1.5rem;
 }
 
 #main-navigation a:hover,
