@@ -5,6 +5,16 @@ from django.utils.text import slugify
 
 # Create your models here.
 
+class Country(models.Model):
+    name = models.CharField(max_length=100)
+    code = models.CharField(max_length=3)
+    
+    def __str__(self):
+        return self.name
+    class Meta:
+        # Register special names for the admin interface
+        verbose_name_plural = "Countries"
+
 class Address(models.Model):
     street = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=10)
@@ -39,6 +49,7 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True) # when an author is deleted, all their books are also deleted
     is_bestseller = models.BooleanField(default=False)
     slug = models.SlugField(default="", null=False, db_index=True) # db_index Saves the data in a way that makes searching easier, better performance, only use db_index for fields that will be searched frequently
+    pubolished_countries = models.ManyToManyField(Country)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title) # Harry Potter 1 -> harry-potter-1
