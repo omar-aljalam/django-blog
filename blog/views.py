@@ -1,22 +1,32 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
+
 from .models import Post
 
 
-def index(request):
-    lastest_posts = Post.objects.all().order_by("-date")[:3] # Django converts this to SQL and get only 3 posts, it does not fetch all posts
-    return render(request, "blog/index.html", {
-        "posts": lastest_posts
-    })
+class IndexView(ListView):
+    template_name = "blog/index.html"
+    model = Post
+    ordering = ["-date"]
+    context_object_name = "posts"
 
-def posts(request):
-    all_posts = Post.objects.all().order_by("-date")
-    return render(request, "blog/posts.html", {
-        "posts": all_posts
-    })
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        data = queryset[:3]
+        return data
 
-def post_detail(request, slug):
-    my_post = get_object_or_404(Post, slug=slug)
-    return render(request, "blog/post-detail.html", {
-        "post": my_post,
-        "tags": my_post.tags.all()
-    })
+class PostsView(ListView):
+    template_name = "blog/posts.html"
+    model = Post
+    context_object_name = "posts"
+    ordering = ["-date"]
+
+class PostDetailView(DetailView):
+    template_name = "blog/post-detail.html"
+    model = Post
+    context_object_name = "post"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["tags"] = self.object.tags.all()
+        return context
