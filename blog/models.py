@@ -13,6 +13,9 @@ class Post(models.Model):
     author = models.ForeignKey("Author", on_delete=models.SET_NULL, related_name="posts", null=True)
     tags = models.ManyToManyField("Tag")
 
+    def __str__(self):
+        return f"{self.title}"
+    
 # Author Model First Name, Last Name, Email # One To Many Relationship with Post
 class Author(models.Model):
     first_name = models.CharField(max_length=50)
@@ -32,3 +35,9 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.caption
+    
+class Comment(models.Model):
+    user_name = models.CharField(max_length=120)
+    user_email = models.EmailField(max_length=254)
+    text = models.TextField(max_length=400)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
