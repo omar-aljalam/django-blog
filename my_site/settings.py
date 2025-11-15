@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&o7#wnlx(n*)0&-dkh95#02v=2(5(-39ly34%=jad@%u4ycx6u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -119,6 +119,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Serving Static files in the production (All static files will be moved to one folder)
+# Do not use the same MEDIA URL and STATIC URL for security reasons
+# python manage.py collectstatic will collect the files into one folder
+# keep working on the main static files folders and run the command whenever you make a change in them
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static"
